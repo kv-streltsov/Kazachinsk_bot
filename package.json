@@ -1,0 +1,16 @@
+{
+  "name": "Kazachinsk_bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "@types/node-telegram-bot-api": "^0.61.6",
+    "install": "^0.13.0",
+    "mongodb": "^5.4.0",
+    "mongoose": "^7.1.0",
+    "node-telegram-bot-api": "^0.61.0"
+  }
+}
