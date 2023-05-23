@@ -6,20 +6,22 @@ import {mongoDbRepository} from "./repository/mongoDbRepository";
 import {getWeather} from "./api.weather.yandex/weather";
 import {botMsg} from "./bot/msg/bot.msg";
 import {InterfaceWeather} from "./dto/interface.weatherts";
+import {run} from "./vk.io/vk.io";
 
 dotenv.config()
-
 const bot = new TelegramBot(authorizationObject.telegram_token, {polling: true})
 
-
-// получаем погоду при старте бота
-let weatherPromis: Promise<InterfaceWeather> = getWeather()
+run().catch(console.log);
 
 
-setInterval(() => {
-    //с интервалом обновляем  погоду
-    weatherPromis = getWeather()
-}, 1000 * 60 * 30)
+// // получаем погоду при старте бота
+// let weatherPromise: Promise<InterfaceWeather> = getWeather()
+//
+//
+// setInterval(() => {
+//     //с интервалом обновляем  погоду
+//     weatherPromise = getWeather()
+// }, 1000 * 60 * 30)
 
 bot.on('message', async (msg) => {
     const id: number = msg.chat.id;
@@ -28,14 +30,14 @@ bot.on('message', async (msg) => {
         await mongoDbRepository.createNewUser(msg)
         bot.sendMessage(id, `${msg.chat.first_name}, welcome to my bot`)
     }
-    if (msg.text === '/weather') {
-        weatherPromis.then(weatherData => {
-            if (weatherData) {
-                bot.sendMessage(id, botMsg.weatherMsg(weatherData))
-            }
-        })
-
-    }
+    // if (msg.text === '/weather') {
+    //     weatherPromise.then(weatherData => {
+    //         if (weatherData) {
+    //             bot.sendMessage(id, botMsg.weatherMsg(weatherData))
+    //         }
+    //     })
+    //
+    // }
 
 })
 
