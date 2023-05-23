@@ -1,4 +1,4 @@
-export interface WeatherInterface{
+export interface InterfaceWeather {
 	temp: number
 	feels_like: number
 	icon: string

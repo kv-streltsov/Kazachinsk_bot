@@ -1,5 +1,4 @@
 import {UserModel} from "../db.mongo.cloud/models/users.model";
-import {InterfaceUser} from "../dto/interface.user";
 
 export const mongoDbRepository = {
     createNewUser: async (data: any) => {
