@@ -1,16 +1,17 @@
-import { VK } from 'vk-io';
+import {VK} from 'vk-io';
 import {authorizationObject} from "../authorization";
+import {vkRepository} from "./vk.repository";
 
-
-const vk = new VK({
+export const vk = new VK({
     token: authorizationObject.vk_token
 });
 
-export async function run() {
-    const response = await vk.api.wall.get({
-        owner_id: 1
-    });
 
-    console.log(response);
+
+
+
+export async function run() {
+    const a = await vkRepository.getWall()
 }
+
 
